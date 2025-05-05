@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import univ_team1.dairyProject.domain.Diary;
 import univ_team1.dairyProject.dto.AddDiaryRequest;
 import univ_team1.dairyProject.dto.DiaryResponse;
+import univ_team1.dairyProject.dto.UpdateDiaryRequest;
 import univ_team1.dairyProject.service.DiaryService;
 
 import java.util.List;
@@ -59,5 +60,14 @@ public class DiaryController {
         return ResponseEntity.ok()
                 .build();
 
+    }
+
+    @PutMapping("/api/diaries/{id}")
+    public ResponseEntity<Diary> updateDiary(@PathVariable long id,
+                                             @RequestBody UpdateDiaryRequest request){
+        Diary updateDiary = diaryService.update(id,request);
+
+        return ResponseEntity.ok()
+                .body(updateDiary);
     }
 }

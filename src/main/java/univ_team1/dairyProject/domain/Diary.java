@@ -52,4 +52,15 @@ public class Diary {
         this.emotion = emotion;
         this.weather = weather;
     }
+
+    public void update(String title,
+                       String content,
+                       Emotion emotion,
+                       Weather weather){
+        this.title = title;
+        this.content = content;
+        this.emotion = emotion;
+        this.weather = weather;
+    }
+
 }
