@@ -3,6 +3,7 @@ package univ_team1.dairyProject.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.config.ListFactoryBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import univ_team1.dairyProject.dto.UpdateDiaryRequest;
 import univ_team1.dairyProject.service.DiaryService;
 
 import java.util.List;
+import java.util.MissingFormatArgumentException;
 
 import static java.util.Arrays.stream;
 
@@ -37,7 +39,7 @@ public class DiaryController {
         }
     }
 
-   /* @Operation(summary = "작성된 일기 전체 리스트 조회")
+   @Operation(summary = "작성된 일기 전체 리스트 조회" ,description = "제대로 실행되는 지 확인")
     @GetMapping("/api/diaries")
     public ResponseEntity<List<DiaryResponse>> findAllDiaries(){
         List<DiaryResponse> diaries = diaryService.findAll()
@@ -46,7 +48,7 @@ public class DiaryController {
                 .toList();
         return ResponseEntity.ok()
                 .body(diaries);
-    }*/
+    }
 
     @Operation(summary = "작성된 일기 조회")
     @GetMapping("/api/diaries/{id}")
@@ -91,5 +93,13 @@ public class DiaryController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @Operation(summary = " 즐겨찾기 설정")
+    @PatchMapping("/api/diaries/{id}/favorite")
+    public ResponseEntity<?> updateFavorite(@PathVariable long id){
+        Diary diary = diaryService.updateFavorite(id);
+        return ResponseEntity.ok()
+                .body("favorite : " + diary.isFavorite());
     }
 }

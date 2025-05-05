@@ -27,9 +27,9 @@ public class DiaryService {
     }
 
     //일기 목록 조회 메서드
-   /* public List<Diary> findAll(){
+   public List<Diary> findAll(){
         return diaryRepository.findAll();
-    }*/
+    }
 
     //일기 상세 조회 메서드
     public Diary findById(long id){
@@ -75,4 +75,12 @@ public class DiaryService {
 
     }
 
+    //즐겨찾기 설정 메서드
+    public Diary updateFavorite(Long id){
+        Diary diary = diaryRepository.findById(id)
+                        .orElseThrow(()-> new IllegalArgumentException("일기를 찾을 수 없습니다."));
+
+        diary.setFavorite(!diary.isFavorite());
+        return diary;
+    }
 }
