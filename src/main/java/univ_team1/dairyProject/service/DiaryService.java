@@ -31,7 +31,9 @@ public class DiaryService {
     }
 
     //일기 삭제 메서드
-    public void deleteById(long id){
+    public void delete(long id){
        diaryRepository.deleteById(id);
     }
+
+
 }
