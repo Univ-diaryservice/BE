@@ -39,8 +39,8 @@ public class Diary {
     private boolean isFavorite;*/
 
     @CreatedDate
-    @Column(name = "created_at", updatable = false)
-    private LocalDate createdAt;
+    @Column(name = "date", updatable = false)
+    private LocalDate date;
 
     @Builder
     public Diary(String title,
