@@ -45,6 +45,7 @@ public class StatsController {
       return ResponseEntity.ok(stats);
     }
   }
+
   @GetMapping("/last-7-days")
   public ResponseEntity<List<DailyEmotionResponse>> getLast7DaysEmotions() {
     List<DailyEmotionResponse> response = statsService.getLast7DaysEmotions();
