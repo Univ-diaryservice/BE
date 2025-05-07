@@ -1,9 +1,13 @@
 package univ_team1.dairyProject.util;
 
 import io.jsonwebtoken.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.Optional;
+import java.util.function.BiPredicate;
 
 @Component
 public class JwtUtil {
@@ -39,5 +43,22 @@ public class JwtUtil {
         } catch (JwtException | IllegalArgumentException e) {
             return false;
         }
+    }
+
+
+    public String verifyAndRefreshTokens(String accessToken, String refreshToken) {
+        // 1. accessToken이 아직 유효하면 그대로 반환
+        if (validateToken(accessToken)) {
+            return accessToken;
+        }
+
+        // 2. accessToken 만료됐지만 refreshToken이 유효하면 새 accessToken 발급
+        if (validateToken(refreshToken)) {
+            String email = extractEmail(refreshToken);
+            return createAccessToken(email);
+        }
+
+        // 3. 둘 다 유효하지 않으면 예외 발생
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다");
     }
 }

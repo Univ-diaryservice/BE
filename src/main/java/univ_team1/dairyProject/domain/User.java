@@ -24,4 +24,10 @@ public class User {
 
     @Column(name = "userName", nullable = false)
     private String userName;
+
+    @Column(nullable = true)
+    private String accessToken;
+
+    @Column(nullable = true)
+    private String refreshToken;
 }
