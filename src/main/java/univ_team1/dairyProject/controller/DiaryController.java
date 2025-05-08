@@ -27,7 +27,7 @@ public class DiaryController {
                     .body(savedDiary);
         }catch(IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("유효하지 않은 감정(emotion) 또는 날씨(weather) 값입니다");
+                    .body("유효하지 않은 감정 또는 날씨값입니다");
         }
     }
 
