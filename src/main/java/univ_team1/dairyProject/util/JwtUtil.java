@@ -61,4 +61,8 @@ public class JwtUtil {
         // 3. 둘 다 유효하지 않으면 예외 발생
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다");
     }
+
+
+
+
 }

@@ -27,8 +27,8 @@ public class SecurityService {
     }
 
 
-    public ResponseEntity<String> signup(SignupRequest SignupRequest) {
-        if (userRepository.findByEmail(SignupRequest.getEmail()).isPresent()) {
+    public ResponseEntity<String> signup(SignupRequest signupRequest) {
+        if (userRepository.findByEmail(signupRequest.getEmail()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "이미 존재하는 이메일입니다");
         }
 
@@ -37,8 +37,9 @@ public class SecurityService {
 //        }
 
         User user = new User();
-        user.setEmail(SignupRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(SignupRequest.getPassword()));
+        user.setEmail(signupRequest.getEmail());
+        user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+        user.setUserName(signupRequest.getUserNickName());
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공");
     }
