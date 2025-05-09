@@ -198,7 +198,7 @@ public class SecurityServiceTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String differentRefreshToken = jwtUtil.createRefreshToken(TEST_EMAIL + "_different");
+        String differentRefreshToken = jwtUtil.createRefreshToken(TEST_EMAIL);
 
         // 확인용 출력 (실제 테스트에서는 제거)
         System.out.println("savedRefreshToken: " + savedRefreshToken);
@@ -222,6 +222,10 @@ public class SecurityServiceTest {
                 ResponseStatusException.class,
                 () -> securityService.refresh(differentRefreshToken)
         );
+
+        System.out.println("예외 상태 코드: " + exception.getStatusCode());
+        System.out.println("예외 메시지: " + exception.getReason());
+
 
         assertEquals(HttpStatus.UNAUTHORIZED, exception.getStatusCode());
         assertEquals("토큰 불일치", exception.getReason());

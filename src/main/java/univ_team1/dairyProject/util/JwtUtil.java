@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.BiPredicate;
 
 @Component
@@ -16,9 +17,14 @@ public class JwtUtil {
     private final long REFRESH_EXP = 1000L * 60 * 60 * 24 * 7;
 
     private String generateToken(String subject, long expMillis) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + expMillis);
+
         return Jwts.builder()
                 .setSubject(subject)
+                .setIssuedAt(now)
                 .setExpiration(new Date(System.currentTimeMillis() + expMillis))
+                .setId(UUID.randomUUID().toString())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
