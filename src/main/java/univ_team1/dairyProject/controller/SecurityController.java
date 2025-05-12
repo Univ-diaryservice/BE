@@ -46,7 +46,8 @@ public class SecurityController {
     @Operation(summary = "로그아웃", description = "사용자 로그아웃 (Bearer 토큰 필요)")
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.replace("Bearer ", "");
+//        String token = authHeader.replace("Bearer ", "");
+        String token = authHeader.replaceFirst("(?i)^Bearer ", "");
         return securityService.logout(token);
     }
 }

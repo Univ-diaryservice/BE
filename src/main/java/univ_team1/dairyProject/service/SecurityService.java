@@ -61,7 +61,7 @@ public class SecurityService {
         headers.add("Access-Token", accessToken);
         headers.add("Refresh-Token", refreshToken);
 
-        user.get().setAccessToken(accessToken);
+//        user.get().setAccessToken(accessToken);
         user.get().setRefreshToken(refreshToken);
         userRepository.save(user.get());
 
@@ -95,7 +95,7 @@ public class SecurityService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "사용자 없음"));
         user.setRefreshToken(null);
-        user.setAccessToken(null);
+//        user.setAccessToken(null);
         userRepository.save(user);
         return ResponseEntity.ok("로그아웃 완료");
     }
