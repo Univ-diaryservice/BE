@@ -70,24 +70,39 @@ public class SecurityService {
 
 
 
-    public ResponseEntity<String> refresh(String refreshToken) {
-        if (!jwtUtil.validateToken(refreshToken)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "유효하지 않은 리프레시 토큰");
+    public ResponseEntity<String> refresh(String refreshToken, String accessToken) {
+        // 1. 액세스 토큰이 유효한지 먼저 체크
+        if (jwtUtil.validateToken(accessToken)) {
+            return ResponseEntity.ok("액세스 토큰은 아직 유효합니다.");
         }
+
+        // 2. 리프레시 토큰 유효성 검사
+        if (!jwtUtil.validateToken(refreshToken)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "유효하지 않은 리프레시 토큰");
+        }
+
+        // 3. 리프레시 토큰에서 이메일 추출
         String email = jwtUtil.extractEmail(refreshToken);
+
+        // 4. 사용자 존재 여부 확인
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "사용자 없음");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "사용자 없음");
         }
 
-
+        // 5. 리프레시 토큰과 저장된 토큰 비교
         if (!refreshToken.equals(user.get().getRefreshToken())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "토큰 불일치");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "토큰 불일치");
         }
-        String newAccess = jwtUtil.createAccessToken(email);
+
+        // 6. 새로운 액세스 토큰 발급
+        String newAccessToken = jwtUtil.createAccessToken(email);
+
+        // 7. 새로운 액세스 토큰을 클라이언트에게 반환
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + newAccess);
-        return ResponseEntity.ok().headers(headers).body("토큰 재발급 완료");
+        headers.add("Authorization", "Bearer " + newAccessToken);
+
+        return ResponseEntity.ok().headers(headers).body("새로운 액세스 토큰이 발급되었습니다.");
     }
 
     public ResponseEntity<String> logout(String accessToken) {

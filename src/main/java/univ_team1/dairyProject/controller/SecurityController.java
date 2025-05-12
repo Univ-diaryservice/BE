@@ -36,9 +36,11 @@ public class SecurityController {
 
     @Operation(summary = "리프레시 토큰", description = "리프레시 토큰을 이용해 새로운 액세스 토큰 발급")
     @PostMapping("/refresh")
-    public ResponseEntity<String> refresh(@RequestHeader("Refresh-Token") String refreshToken) {
-        return securityService.refresh(refreshToken);
+    public ResponseEntity<String> refresh(@RequestHeader("Refresh-Token") String refreshToken,
+                                          @RequestHeader("Access-Token") String accessToken) {
+        return securityService.refresh(refreshToken, accessToken);
     }
+
 
     @Operation(summary = "로그아웃", description = "사용자 로그아웃 (Bearer 토큰 필요)")
     @PostMapping("/logout")
