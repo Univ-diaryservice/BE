@@ -5,16 +5,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import univ_team1.dairyProject.dto.LoginRequest;
 import univ_team1.dairyProject.dto.SignupRequest;
 import univ_team1.dairyProject.service.SecurityService;
 
 
-@Controller
+@RestController
 @Tag(name = "시큐리티 api", description = "회원가입, 로그인, 로그아웃, 리프레시")
 @RequestMapping("/auth")
 public class SecurityController {
