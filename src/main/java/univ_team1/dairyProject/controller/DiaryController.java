@@ -6,8 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.ListFactoryBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import univ_team1.dairyProject.domain.Diary;
+import univ_team1.dairyProject.domain.User;
 import univ_team1.dairyProject.dto.AddDiaryRequest;
 import univ_team1.dairyProject.dto.DiaryResponse;
 import univ_team1.dairyProject.dto.EmotionResponse;
@@ -28,7 +30,8 @@ public class DiaryController {
 
     @Operation(summary = "일기 작성")
     @PostMapping("/api/diaries")
-    public ResponseEntity<?> createDiary(@RequestBody AddDiaryRequest request){
+    public ResponseEntity<?> createDiary(@RequestBody AddDiaryRequest request,
+                                         @AuthenticationPrincipal User user){
         try {
             Diary savedDiary = diaryService.save(request);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -41,7 +44,9 @@ public class DiaryController {
 
    @Operation(summary = "작성된 일기 전체 리스트 조회" ,description = "제대로 실행되는 지 확인")
     @GetMapping("/api/diaries")
-    public ResponseEntity<List<DiaryResponse>> findAllDiaries(){
+    public ResponseEntity<List<DiaryResponse>> findAllDiaries(
+           @AuthenticationPrincipal User user
+   ){
         List<DiaryResponse> diaries = diaryService.findAll()
                 .stream()
                 .map(DiaryResponse::new)
@@ -52,7 +57,8 @@ public class DiaryController {
 
     @Operation(summary = "작성된 일기 조회")
     @GetMapping("/api/diaries/{id}")
-    public ResponseEntity<?> findDiary(@PathVariable long id){
+    public ResponseEntity<?> findDiary(@PathVariable long id,
+                                       @AuthenticationPrincipal User user){
         try {
             Diary diary = diaryService.findById(id);
             return ResponseEntity.ok()
@@ -64,7 +70,8 @@ public class DiaryController {
     }
     @Operation(summary = "작성된 일기 삭제")
     @DeleteMapping("/api/diaries/{id}")
-    public ResponseEntity<Void> deleteDiary(@PathVariable long id){
+    public ResponseEntity<Void> deleteDiary(@PathVariable long id,
+                                            @AuthenticationPrincipal User user){
         diaryService.delete(id);
         return ResponseEntity.ok()
                 .build();
@@ -73,7 +80,8 @@ public class DiaryController {
     @Operation(summary = "작성된 일기 수정")
     @PutMapping("/api/diaries/{id}")
     public ResponseEntity<Diary> updateDiary(@PathVariable long id,
-                                             @RequestBody UpdateDiaryRequest request){
+                                             @RequestBody UpdateDiaryRequest request,
+                                             @AuthenticationPrincipal User user){
         Diary updateDiary = diaryService.update(id,request);
 
         return ResponseEntity.ok()
@@ -84,7 +92,8 @@ public class DiaryController {
     @GetMapping("/api/diaries/emotions")
     public ResponseEntity<?> getEmotionsByMonth(
             @RequestParam int year,
-            @RequestParam int month
+            @RequestParam int month,
+            @AuthenticationPrincipal User user
     ) {
         try {
             List<EmotionResponse> emotions = diaryService.getEmotionsByMonth(year, month);
@@ -97,7 +106,8 @@ public class DiaryController {
 
     @Operation(summary = " 즐겨찾기 설정")
     @PatchMapping("/api/diaries/{id}/favorite")
-    public ResponseEntity<?> updateFavorite(@PathVariable long id){
+    public ResponseEntity<?> updateFavorite(@PathVariable long id,
+                                            @AuthenticationPrincipal User user){
         Diary diary = diaryService.updateFavorite(id);
         return ResponseEntity.ok()
                 .body("favorite : " + diary.isFavorite());
