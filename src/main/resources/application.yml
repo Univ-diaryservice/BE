@@ -14,7 +14,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/univDB
     username: root
-    password: jinwook219
+    password: 305410
 
 springdoc:
   swagger-ui:
