@@ -13,7 +13,7 @@ import java.util.function.BiPredicate;
 @Component
 public class JwtUtil {
     private final String secret = "mysecretkey";
-    private final long ACCESS_EXP = 1000 * 60 * 2;
+    private final long ACCESS_EXP = 1000 * 60 * 15;
     private final long REFRESH_EXP = 1000L * 60 * 60 * 24 * 7;
 
     private String generateToken(String subject, long expMillis) {
