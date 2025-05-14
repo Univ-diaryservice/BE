@@ -9,3 +9,4 @@ import java.util.List;
 public interface DiaryRepository extends JpaRepository<Diary,Long> {
     List<Diary> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }
+//제발 푸시 돼라
