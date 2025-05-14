@@ -12,9 +12,9 @@ spring:
     defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:mysql://3.36.26.52:3306/univDB?useSSL=false&serverTimezone=UTC
-    username: usertest
-    password: univ0512
+    url: jdbc:mysql://localhost:3306/univDB
+    username: root
+    password: jinwook219
 
 springdoc:
   swagger-ui:
