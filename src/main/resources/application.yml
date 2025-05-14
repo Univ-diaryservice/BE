@@ -5,10 +5,8 @@ server:
 spring:
   jpa:
     show-sql: true
-    properties:
-      hibernate:
-        ddl-auto: true
-
+    hibernate:
+      ddl-auto: update
     defer-datasource-initialization: true
 
   datasource:
