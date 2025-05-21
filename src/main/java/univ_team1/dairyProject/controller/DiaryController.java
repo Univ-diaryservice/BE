@@ -43,6 +43,7 @@ public class DiaryController {
         }
     }
 
+
    @Operation(summary = "작성된 일기 전체 리스트 조회" ,description = "제대로 실행되는 지 확인")
     @GetMapping("/api/diaries")
     public ResponseEntity<List<DiaryResponse>> findAllDiaries(
