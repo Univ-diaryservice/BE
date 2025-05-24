@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입</title>
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- 1단계: 이메일 입력 -->
+    <div class="step" id="step-email">
+      <h2 class="step-title">로그인에 사용할 이메일을 입력해주세요.</h2>
+      <input type="email" id="email" placeholder="이메일을 입력해주세요" required />
+      <div class="error" id="email-error">* 이메일 형식이 올바르지 않습니다.<br>‘ “ \ ; % -- = , ( ) < > + - * / 등은 사용하실 수 없습니다.</div>
+      <button class="next-btn" id="email-next" disabled>확인</button>
+    </div>
+
+    <!-- 2단계: 비밀번호 입력 -->
+    <div class="step" id="step-password" style="display: none;">
+      <h2 class="step-title">특수문자 포함 8자 이상의 비밀번호를 입력해주세요.</h2>
+      <input type="password" id="password" placeholder="비밀번호 입력" required />
+      <div class="error" id="password-error">* 비밀번호 형식이 올바르지 않습니다.<br>‘ “ \ ; % -- = , ( ) < > + - * / 등은 사용하실 수 없습니다.</div>
+      <p class="info-text" id="email-preview"></p>
+      <button class="next-btn" id="password-next" disabled>확인</button>
+    </div>
+
+    <!-- 3단계: 닉네임 입력 -->
+    <div class="step" id="step-nickname" style="display: none;">
+      <h2 class="step-title bold">포도나무에서 사용할 닉네임을 입력해주세요.</h2>
+      <input type="text" id="nickname" placeholder="닉네임은 6자 이내로 입력하세요" required />
+      <div class="error" id="nickname-error">* 닉네임은 6자 이내로 입력해주세요.</div>
+      <p class="info-text" id="email-password-preview"></p>
+      <button class="next-btn" id="nickname-next" disabled>확인</button>
+    </div>
+
+    <!-- 4단계: 최종 확인 -->
+    <div class="step" id="step-confirm" style="display: none;">
+      <h2 class="step-title">입력하신 정보가 정확한지 <br> 다시 한번 확인해주세요.</h2>
+      <ul class="confirm-list">
+        <li><strong>이메일:</strong> <span id="confirm-email"></span></li>
+        <li><strong>비밀번호:</strong> <span id="confirm-password"></span></li>
+        <li><strong>닉네임:</strong> <span id="confirm-nickname"></span></li>
+      </ul>
+      <button class="next-btn active" id="confirm-submit">동의하고 시작하기</button>
+    </div>
+
+    <!-- 5단계: 완료 -->
+    <div class="step" id="step-complete" style="display: none; align-items: center; justify-content: center; padding-top: 80px;">
+      <h2 class="step-title"><span id="final-username"></span>님, 환영합니다!</h2>
+    </div>
+
+  </div>
+  <script src="register.js"></script>
+</body>
+</html>

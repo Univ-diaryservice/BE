@@ -1,0 +1,35 @@
+.title {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.grape {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 auto 24px;
+}
+
+.title_body_1 {
+  font-size: 18px;
+  margin: 8px 0;
+  color: #333;
+}
+
+.title_header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.title_body_2 {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 14px 20px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+}
