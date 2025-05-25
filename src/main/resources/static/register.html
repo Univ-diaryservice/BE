@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>회원가입</title>
-  <link rel="stylesheet" href="register.css" />
+  <link rel="stylesheet" href="/static/register.css" />
 </head>
 <body>
   <div class="container">
@@ -29,7 +29,7 @@
     <!-- 3단계: 닉네임 입력 -->
     <div class="step" id="step-nickname" style="display: none;">
       <h2 class="step-title bold">포도나무에서 사용할 닉네임을 입력해주세요.</h2>
-      <input type="text" id="nickname" placeholder="닉네임은 6자 이내로 입력하세요" required />
+      <input type="text" id="userNickName" placeholder="닉네임은 6자 이내로 입력하세요" required />
       <div class="error" id="nickname-error">* 닉네임은 6자 이내로 입력해주세요.</div>
       <p class="info-text" id="email-password-preview"></p>
       <button class="next-btn" id="nickname-next" disabled>확인</button>
@@ -52,6 +52,6 @@
     </div>
 
   </div>
-  <script src="register.js"></script>
+  <script src="/static/register.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputs = {
         email: document.getElementById("email"),
         password: document.getElementById("password"),
-        nickname: document.getElementById("nickname"),
+        nickname: document.getElementById("userNickName"),
     };
 
     const buttons = {
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 최종 확인 → 완료
     buttons.confirm.addEventListener("click", () => {
-        fetch("https://서버주소/api/auth/signup", {
+        fetch("http://localhost:8080/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify({
                 email: saved.email,
                 password: saved.password,
-                nickname: saved.nickname
+                userNickName: saved.nickname
             })
         })
             .then(res => {

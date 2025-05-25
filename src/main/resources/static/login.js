@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const id = userIdInput.value.trim();
         const pw = userPwInput.value;
 
-        fetch("https://localhost:8080/api/auth/login", {
+        fetch("http://localhost:8080/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -68,7 +68,7 @@ async function fetchWithAuth(url, options = {}) {
 
     if (res.status === 401 || res.status === 403) {
         // ✅ 여기서는 fetch() 써야함 (자기 자신 부르면 안 됨!)
-        const refreshRes = await fetch("https://서버주소/api/auth/refresh", {
+        const refreshRes = await fetch("http://localhost:8080/auth/refresh", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
