@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>다이어리 작성</title>
+  <link rel="stylesheet" href="writestyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button id="back" onclick="history.back()">&lt;</button>
+            <div id="currentday"></div>
+            <button class="done">완료</button>
+        </div>
+        
+        <div class="controls">
+            <label>기분 :
+                <span id="selectedFeelingDisplay">기분 선택...</span>
+                <button id="feelingButton">&gt;</button>
+            </label>
+        
+            <label>날씨 :
+                <span id="selectedWeatherDisplay">날씨 선택...</span>
+                <button id="weatherButton">&gt;</button>
+            </label>
+        </div>
+            
+        <div class="content">
+            <input type="text" placeholder="제목을 입력하세요..." id="titleInput">
+            <textarea placeholder="글쓰기 시작..." id="bodyInput"></textarea>
+        </div>
+
+        <!-- 기분 선택 모달 -->
+        <div id="feelingModal" class="modal">
+            <div class="modal-content">
+                <h3>오늘 기분은 어떠셨나요?</h3>
+                <div class="selected-feeling">
+                    <img id="selectedFeelingSvg" src="" alt="선택된 기분">
+                </div>
+                <div id="selectedFeelingText" class="selected-text">최고에요</div>
+                <div class="feeling-options">
+                    <div class="feeling-option" data-feeling="HAPPY"></div>
+                    <div class="feeling-option" data-feeling="BLESSING"></div>
+                    <div class="feeling-option" data-feeling="SOSO"></div>
+                    <div class="feeling-option" data-feeling="SAD"></div>
+                    <div class="feeling-option" data-feeling="MAD"></div>
+                </div>
+                <button id="confirmFeelingButton" class="confirm-button">입력</button>
+            </div>
+        </div>
+
+        <!-- 날씨 선택 모달 -->
+        <div id="weatherModal" class="modal">
+            <div class="modal-content">
+                <h3>오늘 날씨는 어땠나요?</h3>
+                <div class="selected-weather">
+                    <img id="selectedWeatherSvg" src="" alt="선택된 날씨">
+                </div>
+                <div class="weather-options">
+                    <div class="weather-option" data-weather="SUNNY"></div>
+                    <div class="weather-option" data-weather="RAIN"></div>
+                    <div class="weather-option" data-weather="CLOUDY"></div>
+                    <div class="weather-option" data-weather="SNOW"></div>
+                </div>
+                <button id="confirmWeatherButton" class="confirm-button">입력</button>
+            </div>
+        </div>
+
+        <script src="writescript.js"></script>
+    </div>
+</body>
+</html>

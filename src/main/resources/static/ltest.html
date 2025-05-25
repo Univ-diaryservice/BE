@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiaryList</title>
+<link rel="stylesheet" href="lteststyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="banner">
+            <button class="back" onclick="window.location.href='Today.html'">&lt;</button>
+            <div class="date" onclick="showDateModal()">2025년 5월</div>
+            <div>
+                <button class="search">
+                    <img class="searchglass" src="image/MagnifyingGlass.png" alt="돋보기">
+                </button>
+                <button class="totalList">
+                    <img class="wholeList" src="image/list.svg" alt="리스트">
+                </button>
+            </div>
+        </div>
+
+        <div class="modal" id="dateModal">
+            <div class="datemodal-content">
+                <h3>날짜 선택하기</h3>
+                <div class = selectyear>
+                    <button class="nav-btn prev-year">&lt;</button>
+                    <div class="current-year">2025</div>
+                    <button class="nav-btn next-year">&gt;</button>
+                </div>
+                <div class="months">
+                    <button class="month-btn" data-month="Jan">Jan</button>
+                    <button class="month-btn" data-month="Feb">Feb</button>
+                    <button class="month-btn" data-month="Mar">Mar</button>
+                    <button class="month-btn" data-month="Apr">Apr</button>
+                    <button class="month-btn" data-month="May">May</button>
+                    <button class="month-btn" data-month="Jun">Jun</button>
+                    <button class="month-btn" data-month="Jul">Jul</button>
+                    <button class="month-btn" data-month="Aug">Aug</button>
+                    <button class="month-btn" data-month="Sep">Sep</button>
+                    <button class="month-btn" data-month="Oct">Oct</button>
+                    <button class="month-btn" data-month="Nov">Nov</button>
+                    <button class="month-btn" data-month="Dec">Dec</button>
+                </div>
+                <button class="confirm-btn">확인</button>
+            </div>
+        </div>
+
+        <div id="sortModal" class="modal">
+            <div class="modal-content">
+                <div class = "options">
+                    <button class="sort-option" data-sort="desc">최신순</button>
+                    <button class="sort-option" data-sort="asc">오래된순</button>
+                </div>
+                <button class="confirm-btn">확인</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="sort-btn" onclick="showSortModal()">
+                <div class="selectTime"></div>
+            </button>
+            <div class="favorites"><input type="checkbox" id="favoriteFilter"> 즐겨찾기</div>
+        </div>
+
+        <div class="diary-list" id="diaryList">
+            <!-- Diary items will be dynamically inserted here -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be dynamically inserted here -->
+        </div>
+    </div>
+    <script src="ltestscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f2f2f2;
+    width: 100vw;
+    height: 100vh;
+    border-bottom-width: 2px;
+    text-align: center;
+    align-items: center;
+}
+
+.container {
+    width: 375px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background: #eee;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#back {
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#currentday {
+    text-align: center;
+}
+
+.done {
+    color: lightgray;
+    border: none;
+    cursor: pointer;
+}
+
+#selectedFeelingDisplay {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+#selectedFeelingDisplay img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+#selectedWeatherDisplay {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+#selectedWeatherDisplay img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background: white;
+    border-bottom: 1px solid #ccc;
+}
+
+.controls label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+#feelingButton, #weatherButton {
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#weatherselect {
+    border: none;
+    display: none;
+}
+
+select {
+    margin-left: 5px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.content {
+    padding: 20px;
+    background: white;
+    height: calc(100vh - 120px);
+}
+
+#titleInput {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#titleInput:focus {
+    outline: none;
+    border-color: #666;
+}
+
+#bodyInput {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    font-size: 14px;
+    border: none;
+    resize: none;
+    background-color: white;
+    line-height: 36px;
+    background-image: repeating-linear-gradient(to bottom, white 0px, white 23px, #ddd 23px, #ddd 24px);
+    background-size: calc(100% - 20px) 36px;
+    background-position: 10px 8px;
+}
+
+#bodyInput:focus {
+    outline: none;
+}
+
+#feelingModal.modal, #weatherModal.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+#feelingModal.modal.show, #weatherModal.modal.show {
+    display: flex !important;
+}
+
+.modal-content {
+    width: 375px;
+    background-color: rgba(255, 255, 255, 1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1001;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.selected-feeling, .selected-weather {
+    width: 80px;
+    height: 80px;
+    margin: 10px auto;
+}
+
+.selected-feeling img, .selected-weather img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.selected-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.feeling-options, .weather-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.feeling-option, .weather-option {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.feeling-option.selected, .weather-option.selected {
+    background-color: black;
+}
+
+.feeling-option img, .weather-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.confirm-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}

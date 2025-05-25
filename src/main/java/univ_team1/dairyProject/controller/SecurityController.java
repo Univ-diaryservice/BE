@@ -3,12 +3,20 @@ package univ_team1.dairyProject.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import univ_team1.dairyProject.dto.LoginRequest;
 import univ_team1.dairyProject.dto.SignupRequest;
 import univ_team1.dairyProject.service.SecurityService;
+
+import java.io.IOException;
+import java.net.URI;
 
 
 @RestController
@@ -20,6 +28,8 @@ public class SecurityController {
     public SecurityController(SecurityService securityService) {
         this.securityService = securityService;
     }
+
+
 
 
     @Operation(summary = "회원가입", description = "회원가입 dto")
@@ -48,5 +58,22 @@ public class SecurityController {
 //        String token = authHeader.replace("Bearer ", "");
         String token = authHeader.replaceFirst("(?i)^Bearer ", "");
         return securityService.logout(token);
+    }
+
+
+    @GetMapping("/login")
+    public ResponseEntity<InputStreamResource> LoginForm() throws IOException {
+        ClassPathResource htmlFile = new ClassPathResource("static/login1.html");
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_HTML)
+                .body(new InputStreamResource(htmlFile.getInputStream()));
+    }
+
+    @GetMapping("/signup")
+    public ResponseEntity<InputStreamResource> SignupForm() throws IOException {
+        ClassPathResource htmlFile = new ClassPathResource("static/register.html");
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_HTML)
+                .body(new InputStreamResource(htmlFile.getInputStream()));
     }
 }

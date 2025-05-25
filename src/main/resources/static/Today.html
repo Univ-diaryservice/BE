@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset = "UTF-8">
+  <meta name = "viewport" content = "width = device-width, initial-scale=1.0"/>
+  <title>Diary</title>
+  <link rel = "stylesheet" href = "styles.css">
+</head>
+<body>
+  <div class = "container">
+    <header>
+      <div id = "currentday"></div>
+      <div class = "How_was_today">
+        오늘 하루는 어땠나요?
+      </div>
+    </header>
+    <section class = "diarygrape">
+      <div class = "grapeimg">
+        <div class="grape-cluster" id="grapeCluster"></div>
+      </div>
+      <div class = "grapefooter">
+        <button id = "prevWeek">&lt;</button>
+        <div id = "nowWeek"></div>
+        <button id = "nextWeek">&gt;</button>
+      </div>
+    </section>
+
+    <section class = "calendar-section">
+      <div class = "calendar-header">
+        <button id = "prevMonth">&lt;</button>
+        <div id = "currentMonth"></div>
+        <button id = "nextMonth">&gt;</button>
+      </div>
+      <div class = "calendar">
+        <div class = "day">일</div>
+        <div class = "day">월</div>
+        <div class = "day">화</div>
+        <div class = "day">수</div>
+        <div class = "day">목</div>
+        <div class = "day">금</div>
+        <div class = "day">토</div>
+      </div>
+      <div class = "calendar-dates" id = "calendarDates"></div>
+    </section>
+
+    <section class = "search-section">
+      <button type = "submit" class = "magnifying_glass">
+        <img class = "magnify" src = "image/MagnifyingGlass.png" alt = "돋보기">
+      </button>
+      <div class = "search-text">
+        <input type = "text" placeholder = "키워드 검색하기...">
+      </div>
+    </section>
+
+    <section class = "a-year-ago">
+      <div class = "diary-year-ago">
+        <div class = "diary-year-ago-title">1년 전 오늘엔..</div>
+        <div class = "last-year">
+          <div class = "last-title"></div>
+          <div class = "last-feeling"></div>
+          <div class = "last-weather"></div>
+        </div>
+        <div class = "year-ago-diary">
+          <button id = "gotodiarybtn">일기 확인하기</button>
+        </div>
+      </div>
+    </section>
+
+    <section class = "month-mood">
+      <div class = "month-mood-title">
+        이번 달 나의 기분은?
+      </div>
+      <div class = "month-mood-total">
+        <div class = "month-happy"><img src="image/month-happy.png" alt="기분"><span class="count">× 0</span></div>
+        <div class = "month-blessing"><img src="image/month-happy.png" alt="기분"><span class="count">× 0</span></div>
+        <div class = "month-soso"><img src="image/month-happy.png" alt="기분"><span class="count">× 0</span></div>
+        <div class = "month-sad"><img src="image/month-happy.png" alt="기분"><span class="count">× 0</span></div>
+        <div class = "month-mad"><img src="image/month-happy.png" alt="기분"><span class="count">× 0</span></div>
+      </div>
+    </section>
+
+    <section class = "footer-buttons">
+      <button class = "list-button" onclick="window.location.href='ltest.html'">
+        <img class = "list" src = "image/ListDashes.png" alt = "목록보기"/>
+        <div class = "seelist">목록보기</div>
+      </button>
+      <button class = "favorite-button" onclick="window.location.href='ltest.html'">
+        <img class = "favorites" src = "image/filledStar.svg" alt = "즐겨찾기"/>
+        <div class = "seefavorites">즐겨찾기</div>
+      </button>
+    </section>
+
+    <button class="fab" onclick="handleFabClick()">+</button>
+  </div>
+
+  <script src = "script.js"></script>
+</body>
+</html>
